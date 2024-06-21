@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/juegoppt"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NivelActivity">
+
+    <Button
+        android:id="@+id/btnMedio"
+        android:layout_width="277dp"
+        android:layout_height="57dp"
+        android:backgroundTint="#2dc2e3"
+        android:onClick="seleccionarDificultad"
+        android:text="Medio"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.39" />
+
+    <Button
+        android:id="@+id/btnFacil"
+        android:layout_width="277dp"
+        android:layout_height="57dp"
+        android:backgroundTint="#2dc2e3"
+        android:onClick="seleccionarDificultad"
+        android:text="Facil"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.268" />
+
+    <Button
+        android:id="@+id/btnInfierno"
+        android:layout_width="277dp"
+        android:layout_height="57dp"
+        android:backgroundTint="#2dc2e3"
+        android:onClick="seleccionarDificultad"
+        android:text="Infierno"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.642" />
+
+    <Button
+        android:id="@+id/btnDificil"
+        android:layout_width="277dp"
+        android:layout_height="57dp"
+        android:backgroundTint="#2dc2e3"
+        android:onClick="seleccionarDificultad"
+        android:text="Dificil"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.519" />
+
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="158dp"
+        android:layout_height="65dp"
+        android:backgroundTint="#2dc2e3"
+        android:onClick="iniciarPartida"
+        android:text="Start"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.828" />
+
+    <ImageButton
+        android:id="@+id/imbBacktwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="atras"
+        android:background="#00FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/volver" />
+</androidx.constraintlayout.widget.ConstraintLayout>
