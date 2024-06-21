@@ -27,7 +27,6 @@ public class MesaMemoria {
     //Variables para manejar cartas
     private int indexPrimeraOpcion;
     private int codigoPrimeraOpcion;
-    private String activacionCartas = "usable";
 
     //Constructor
     public MesaMemoria(ArrayList<CartaMemoria> cartasMemoria, ArrayList<Posicion> posicionesMesa, TextView verPuntos, TextView verIntentos, int intentos, int dificultad){
@@ -46,9 +45,7 @@ public class MesaMemoria {
             cartasMemoria.get(i).posicionar_carta(posicionesMesa.get(i).posicionY, posicionesMesa.get(i).posicionX);
         }
         if (estadoMesa.equals("sin iniciar")){
-            for(CartaMemoria carta : cartasMemoria){
-                carta.cambiar_estado_usabilidad("usable");
-            }
+            cambiarEstadoCartas("usable");
             estadoMesa = "en juego";
         }
     }
@@ -85,9 +82,9 @@ public class MesaMemoria {
     public void obtener_resultado(CartaMemoria segundaOpcion){
 
         int indexSegundaOpcion = cartasMemoria.indexOf(segundaOpcion);
-
         cartasMemoria.get(indexSegundaOpcion).revelar_carta();
-        cartasMemoria.get(indexSegundaOpcion).cambiar_estado_usabilidad("no usable");
+
+        cambiarEstadoCartas("no usable");
 
         float resultado = (float) (codigoPrimeraOpcion + segundaOpcion.codigoCarta) / 2;
 
@@ -98,9 +95,11 @@ public class MesaMemoria {
         }
     }
     private void cartas_pares_encontradas(int indexSegundaOpcion){
+
+        cambiarEstadoCartas("usable");
         verPuntos.setText(String.valueOf(puntos.sumarScore(50)));
         cartasMemoria.get(indexPrimeraOpcion).cambiar_estado_usabilidad("jugada");
-        cartasMemoria.get(indexSegundaOpcion).cambiar_estado_usabilidad("juagda");
+        cartasMemoria.get(indexSegundaOpcion).cambiar_estado_usabilidad("jugada");
 
         if (cantidadPares > 1){
             cantidadPares--;
@@ -118,7 +117,6 @@ public class MesaMemoria {
         }
         else {
             cantidadPares--;
-            System.out.println(cantidadPares+" acabo el juego");
         }
     }
     private void cartas_impares_encontradas(int indexSegundaOpcion){
@@ -131,18 +129,15 @@ public class MesaMemoria {
                 cartasMemoria.get(indexSegundaOpcion).cambiar_estado_usabilidad("usable");
                 cartasMemoria.get(indexPrimeraOpcion).ocultar_carta();
                 cartasMemoria.get(indexSegundaOpcion).ocultar_carta();
+                cambiarEstadoCartas("usable");
             }
         },1400);
     }
-    //Establecer el uso de cartas
-    private void mantener_orden(){
 
-        activacionCartas = (activacionCartas.equals("usable")) ? "no usable" : "usable";
+    //Establecer el uso de cartas
+    private void cambiarEstadoCartas(String estadoActual){
         for (CartaMemoria carta : cartasMemoria){
-            String diferenciarCarta = carta.estado();
-            if(!diferenciarCarta.equals("jugada")){
-                carta.cambiar_estado_usabilidad(activacionCartas);
-            }
+            carta.cambiar_estado_usabilidad(estadoActual);
         }
     }
 }
