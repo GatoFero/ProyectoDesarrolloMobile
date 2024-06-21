@@ -3,6 +3,8 @@ package com.example.preguntasrapidas.objetos;
 import android.os.Handler;
 import android.widget.TextView;
 
+import com.example.preguntasrapidas.objetos.cartas.CartaMemoria;
+
 import java.util.ArrayList;
 import java.util.Collections;
 

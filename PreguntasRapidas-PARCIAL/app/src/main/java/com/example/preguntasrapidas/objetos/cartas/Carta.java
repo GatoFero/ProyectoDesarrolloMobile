@@ -1,4 +1,4 @@
-package com.example.preguntasrapidas.objetos;
+package com.example.preguntasrapidas.objetos.cartas;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

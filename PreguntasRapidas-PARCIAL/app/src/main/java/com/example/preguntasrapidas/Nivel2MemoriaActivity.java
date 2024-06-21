@@ -13,7 +13,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.preguntasrapidas.objetos.CartaMemoria;
+import com.example.preguntasrapidas.objetos.cartas.CartaMemoria;
 import com.example.preguntasrapidas.objetos.MesaMemoria;
 import com.example.preguntasrapidas.objetos.Posicion;
 

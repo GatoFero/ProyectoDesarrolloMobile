@@ -1,8 +1,10 @@
-package com.example.preguntasrapidas.objetos;
+package com.example.preguntasrapidas.objetos.cartas;
 
 import android.content.Context;
 import android.view.View;
 import android.widget.ImageButton;
+
+import com.example.preguntasrapidas.objetos.MesaMemoria;
 
 public class CartaMemoria extends Carta{
     private MesaMemoria mesaMemoria;
