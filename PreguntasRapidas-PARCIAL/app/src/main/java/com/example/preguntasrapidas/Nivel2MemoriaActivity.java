@@ -92,7 +92,7 @@ public class Nivel2MemoriaActivity extends AppCompatActivity {
         intentos2 = findViewById(R.id.intentos2);
         scoreMemoria2 = findViewById(R.id.scoreMemoria2);
 
-        mesa = new MesaMemoria(cartas,posiciones,scoreMemoria2,intentos2,5,2);
+        mesa = new MesaMemoria(cartas,posiciones,intentos2,scoreMemoria2,8,2);
         preparar_mesa();
 
         new Timer().schedule(new TimerTask() {
@@ -128,9 +128,19 @@ public class Nivel2MemoriaActivity extends AppCompatActivity {
                 }
             }
         });
+        prueba();
 
     }
 
+    public void prueba(){
+        Posicion posicion2 = new Posicion(10f,20f);
+        Posicion posicion3 = new Posicion(10f,20f);
+        if(posicion2.equals(posicion3)){
+            System.out.println("Correcto");
+        } else{
+            System.out.println("no es correcto");
+        }
+    }
     public void preparar_mesa(){
 
         cartas.add(new CartaMemoria("card1", 1, card1, false,0.471f, 0.498f, mesa));

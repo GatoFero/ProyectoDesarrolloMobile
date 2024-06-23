@@ -1,6 +1,7 @@
 package com.example.preguntasrapidas.objetos.ensabladores;
 
 import android.os.Handler;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.example.preguntasrapidas.objetos.util.Posicion;
@@ -52,9 +53,10 @@ public class MesaMemoria {
         shuffleCards();
     }
     public void shuffleCards(){
+
         Collections.shuffle(positions);
-        for (int i= 0; i < positions.size(); i++){
-            memoryCards.get(i).moveCard(positions.get(i).getPosicionY(), positions.get(i).getPosicionX());
+        for (int i = 0; i < positions.size(); i++) {
+            memoryCards.get(i).moveCard(positions.get(i).posicionY, positions.get(i).posicionX);
         }
     }
     private void changeStateCards(String newState){
@@ -62,26 +64,28 @@ public class MesaMemoria {
             card.changeState(newState);
         }
     }
-    private void removeCard(CartaMemoria cardRemove){
+    private void removeCard(CartaMemoria cardRemove) {
 
-        Posicion cardRemovePosition = new Posicion(cardRemove.getPositionY(), cardRemove.getPositionX());
-        Iterator<CartaMemoria> iteratorCards = memoryCards.iterator();
-        Iterator<Posicion> iteratorPositions = positions.iterator();
+        LinkedList<CartaMemoria> newCards = new LinkedList<>();
+        LinkedList<Posicion> newPositions = new LinkedList<>();
 
-        while(iteratorCards.hasNext()){
-            CartaMemoria card = iteratorCards.next();
-            if(card.equals(cardRemove)){
-                iteratorCards.remove();
-                break;
+        for (CartaMemoria card : memoryCards) {
+            if (!card.equals(cardRemove)) {
+                newCards.add(card);
             }
         }
-        while(iteratorPositions.hasNext()){
-            Posicion position = iteratorPositions.next();
-            if(position.equals(cardRemovePosition)){
-                iteratorPositions.remove();
-                break;
+        for (Posicion position : positions) {
+            if ((position.posicionY == cardRemove.positionY) && (position.posicionX == cardRemove.positionX)) {
+                System.out.println("Se removio");
+            } else{
+                newPositions.add(position);
             }
         }
+
+        positions.clear();
+        positions.addAll(newPositions);
+        memoryCards.clear();
+        memoryCards.addAll(newCards);
     }
 
     //Comparative Manager

@@ -24,8 +24,8 @@ public class Carta {
     protected ImageView container;
 
     //Elementos en juego o metodos
-    protected float positionY;
-    protected float positionX;
+    public float positionY;
+    public float positionX;
     protected boolean cola =  false;
 
 
@@ -69,12 +69,6 @@ public class Carta {
     public float getCodeCard() {
         return codeCard;
     }
-    public float getPositionY() {
-        return positionY;
-    }
-    public float getPositionX() {
-        return positionX;
-    }
 
     // Methods interactive
     public void revealOrHideCard(boolean view){
@@ -106,6 +100,7 @@ public class Carta {
     public void moveCard(float posY, float posX) {
 
         if (!cola){
+            updatePosition(posY, posX);
             cola = true;
             ConstraintLayout constraintLayout = (ConstraintLayout) container.getParent();
             ConstraintSet constraintSet = new ConstraintSet();
@@ -124,7 +119,6 @@ public class Carta {
                 @Override
                 public void onTransitionEnd(Transition transition) {
                     cola = false;
-                    updatePosition(posY, posX);
                 }
 
                 @Override
@@ -150,6 +144,7 @@ public class Carta {
 
         if (!cola) {
             cola = true;
+            updatePosition(posY, posX);
             ConstraintLayout.LayoutParams position = (ConstraintLayout.LayoutParams) container.getLayoutParams();
             ValueAnimator animation = ValueAnimator.ofFloat(0, 1);
 
@@ -171,7 +166,6 @@ public class Carta {
                 }
             });
             animation.start();
-            updatePosition(posY, posX);
         } else {
             System.out.println("Espera crj");
         }
