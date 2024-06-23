@@ -1,4 +1,4 @@
-package com.example.preguntasrapidas.objetos;
+package com.example.preguntasrapidas.objetos.ensabladores;
 
 import android.content.Context;
 import android.graphics.RenderEffect;
@@ -7,6 +7,8 @@ import android.os.Build;
 import android.os.Handler;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import com.example.preguntasrapidas.objetos.Pregunta;
 
 import java.io.Serializable;
 import java.util.ArrayList;

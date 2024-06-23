@@ -63,7 +63,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cantidadScore" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/card1"
         android:layout_width="80dp"
         android:layout_height="100dp"
@@ -75,7 +75,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.152" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/card2"
         android:layout_width="80dp"
         android:layout_height="100dp"
@@ -87,7 +87,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.846" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/card3"
         android:contentDescription="none"
         android:layout_width="80dp"
@@ -99,7 +99,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.6" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/card4"
         android:contentDescription="none"
         android:layout_width="80dp"
@@ -111,7 +111,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.6" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/card5"
         android:contentDescription="none"
         android:layout_width="80dp"
@@ -123,7 +123,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.795" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/card6"
         android:layout_width="80dp"
         android:layout_height="100dp"
@@ -135,7 +135,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.706" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/card7"
         android:layout_width="80dp"
         android:layout_height="100dp"
@@ -147,7 +147,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.706" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/card8"
         android:contentDescription="none"
         android:layout_width="80dp"
@@ -159,7 +159,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.795" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/card9"
         android:contentDescription="none"
         android:layout_width="80dp"
@@ -171,7 +171,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.21" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/card10"
         android:contentDescription="none"
         android:layout_width="80dp"
@@ -183,7 +183,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.21" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/card11"
         android:layout_width="80dp"
         android:layout_height="100dp"
@@ -195,7 +195,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.299" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/card12"
         android:layout_width="80dp"
         android:layout_height="100dp"
@@ -207,7 +207,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.299" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/card13"
         android:contentDescription="none"
         android:layout_width="80dp"
@@ -219,7 +219,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.407" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/card14"
         android:contentDescription="none"
         android:layout_width="80dp"
@@ -231,7 +231,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.407" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/card15"
         android:layout_width="80dp"
         android:layout_height="100dp"
@@ -243,7 +243,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.513" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/card16"
         android:layout_width="80dp"
         android:layout_height="100dp"
@@ -263,6 +263,7 @@
         android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/volver" />
+        app:srcCompat="@drawable/volver"
+        android:contentDescription="TODO" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

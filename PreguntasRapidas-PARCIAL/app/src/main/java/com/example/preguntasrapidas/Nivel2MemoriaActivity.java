@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -14,34 +15,35 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.preguntasrapidas.objetos.cartas.CartaMemoria;
-import com.example.preguntasrapidas.objetos.MesaMemoria;
-import com.example.preguntasrapidas.objetos.Posicion;
+import com.example.preguntasrapidas.objetos.ensabladores.MesaMemoria;
+import com.example.preguntasrapidas.objetos.util.Posicion;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Nivel2MemoriaActivity extends AppCompatActivity {
 
-    private ImageButton card1;
-    private ImageButton card2;
-    private ImageButton card3;
-    private ImageButton card4;
-    private ImageButton card5;
-    private ImageButton card6;
-    private ImageButton card7;
-    private ImageButton card8;
-    private ImageButton card9;
-    private ImageButton card10;
-    private ImageButton card11;
-    private ImageButton card12;
-    private ImageButton card13;
-    private ImageButton card14;
-    private ImageButton card15;
-    private ImageButton card16;
+    private ImageView card1;
+    private ImageView card2;
+    private ImageView card3;
+    private ImageView card4;
+    private ImageView card5;
+    private ImageView card6;
+    private ImageView card7;
+    private ImageView card8;
+    private ImageView card9;
+    private ImageView card10;
+    private ImageView card11;
+    private ImageView card12;
+    private ImageView card13;
+    private ImageView card14;
+    private ImageView card15;
+    private ImageView card16;
     private TextView iniciarNivel2;
-    private ArrayList<Posicion> posiciones = new ArrayList<>();
-    private ArrayList<CartaMemoria> cartas = new ArrayList<>();
+    private LinkedList<CartaMemoria> cartas = new LinkedList<>();
+    private LinkedList<Posicion> posiciones = new LinkedList<>();
     private TextView intentos2;
     private TextView scoreMemoria2;
     private MesaMemoria mesa;
@@ -96,12 +98,12 @@ public class Nivel2MemoriaActivity extends AppCompatActivity {
         new Timer().schedule(new TimerTask() {
             @Override
             public void run(){
-                if(!cartas.get(0).cola){
+                if(!cartas.get(0).isCola()){
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             iniciarNivel2.setText("Toca Para Empezar");
-                            mesa.establecer_medidas_nivel();
+                            mesa.setIntents();
                         }
                     });
                     cancel();
@@ -115,13 +117,13 @@ public class Nivel2MemoriaActivity extends AppCompatActivity {
                 boolean cola = false;
 
                 for(CartaMemoria cartaMemoria : cartas){
-                    if(!cartaMemoria.cola){
+                    if(!cartaMemoria.isCola()){
                         cola = true;
                         break;
                     }
                 }
                 if (cola){
-                    mesa.barajar_cartas();
+                    mesa.startGame();
                     ((ViewGroup) v.getParent()).removeView(v);
                 }
             }
@@ -131,22 +133,22 @@ public class Nivel2MemoriaActivity extends AppCompatActivity {
 
     public void preparar_mesa(){
 
-        cartas.add(new CartaMemoria(this,"card1", 1, card1, 0,0.471f, 0.498f, mesa));
-        cartas.add(new CartaMemoria(this,"card1", 1, card2, 0,0.471f, 0.498f, mesa));
-        cartas.add(new CartaMemoria(this,"card2", 2, card3, 0,0.471f, 0.498f, mesa));
-        cartas.add(new CartaMemoria(this,"card2", 2, card4, 0,0.471f, 0.498f, mesa));
-        cartas.add(new CartaMemoria(this,"card3", 3, card5, 0,0.471f, 0.498f, mesa));
-        cartas.add(new CartaMemoria(this,"card3", 3, card6, 0,0.471f, 0.498f, mesa));
-        cartas.add(new CartaMemoria(this,"card4", 4, card7, 0,0.471f, 0.498f, mesa));
-        cartas.add(new CartaMemoria(this,"card4", 4, card8, 0,0.471f, 0.498f, mesa));
-        cartas.add(new CartaMemoria(this,"card5", 5, card9, 0,0.471f, 0.498f, mesa));
-        cartas.add(new CartaMemoria(this,"card5", 5, card10, 0,0.471f, 0.498f, mesa));
-        cartas.add(new CartaMemoria(this,"card6", 6, card11, 0,0.471f, 0.498f, mesa));
-        cartas.add(new CartaMemoria(this,"card6", 6, card12, 0,0.471f, 0.498f, mesa));
-        cartas.add(new CartaMemoria(this,"card7", 7, card13, 0,0.471f, 0.498f, mesa));
-        cartas.add(new CartaMemoria(this,"card7", 7, card14, 0,0.471f, 0.498f, mesa));
-        cartas.add(new CartaMemoria(this,"card8", 8, card15, 0,0.471f, 0.498f, mesa));
-        cartas.add(new CartaMemoria(this,"card8", 8, card16, 0,0.471f, 0.498f, mesa));
+        cartas.add(new CartaMemoria("card1", 1, card1, false,0.471f, 0.498f, mesa));
+        cartas.add(new CartaMemoria("card1", 1, card2, false,0.471f, 0.498f, mesa));
+        cartas.add(new CartaMemoria("card2", 2, card3, false,0.471f, 0.498f, mesa));
+        cartas.add(new CartaMemoria("card2", 2, card4, false,0.471f, 0.498f, mesa));
+        cartas.add(new CartaMemoria("card3", 3, card5, false,0.471f, 0.498f, mesa));
+        cartas.add(new CartaMemoria("card3", 3, card6, false,0.471f, 0.498f, mesa));
+        cartas.add(new CartaMemoria("card4", 4, card7, false,0.471f, 0.498f, mesa));
+        cartas.add(new CartaMemoria("card4", 4, card8, false,0.471f, 0.498f, mesa));
+        cartas.add(new CartaMemoria("card5", 5, card9, false,0.471f, 0.498f, mesa));
+        cartas.add(new CartaMemoria("card5", 5, card10, false,0.471f, 0.498f, mesa));
+        cartas.add(new CartaMemoria("card6", 6, card11, false,0.471f, 0.498f, mesa));
+        cartas.add(new CartaMemoria("card6", 6, card12, false,0.471f, 0.498f, mesa));
+        cartas.add(new CartaMemoria("card7", 7, card13, false,0.471f, 0.498f, mesa));
+        cartas.add(new CartaMemoria("card7", 7, card14, false,0.471f, 0.498f, mesa));
+        cartas.add(new CartaMemoria("card8", 8, card15, false,0.471f, 0.498f, mesa));
+        cartas.add(new CartaMemoria("card8", 8, card16, false,0.471f, 0.498f, mesa));
 
         posiciones.add(new Posicion(0.21f, 0.075f));
         posiciones.add(new Posicion(0.21f, 0.356f));

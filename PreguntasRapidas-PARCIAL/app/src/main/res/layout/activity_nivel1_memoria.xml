@@ -7,99 +7,99 @@
     android:layout_height="match_parent"
     tools:context=".Nivel1MemoriaActivity">
 
-    <ImageButton
+    <ImageView
         android:id="@+id/nivel1_terceraCard"
         android:layout_width="100dp"
         android:layout_height="125dp"
-        android:contentDescription="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.916"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/card" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/nivel1_sextaCard"
         android:layout_width="100dp"
         android:layout_height="125dp"
-        android:contentDescription="5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.819"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.706" />
+        app:layout_constraintVertical_bias="0.706"
+        android:contentDescription="@string/card" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/nivel1_cuartaCard"
         android:layout_width="100dp"
         android:layout_height="125dp"
-        android:contentDescription="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.819"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.293" />
+        app:layout_constraintVertical_bias="0.293"
+        android:contentDescription="@string/card" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/nivel1_primeraCard"
         android:layout_width="100dp"
         android:layout_height="125dp"
-        android:contentDescription="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.176"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.293" />
+        app:layout_constraintVertical_bias="0.293"
+        android:contentDescription="@string/card" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/nivel1_octavaCard"
         android:layout_width="100dp"
         android:layout_height="125dp"
-        android:contentDescription="7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.085" />
+        app:layout_constraintVertical_bias="0.085"
+        android:contentDescription="@string/card" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/nivel1_septimaCard"
         android:layout_width="100dp"
         android:layout_height="125dp"
-        android:contentDescription="6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.912" />
+        app:layout_constraintVertical_bias="0.912"
+        android:contentDescription="@string/card"/>
 
-    <ImageButton
+    <ImageView
         android:id="@+id/nivel1_quintaCard"
         android:layout_width="100dp"
         android:layout_height="125dp"
-        android:contentDescription="4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.083"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/card"/>
 
-    <ImageButton
+    <ImageView
         android:id="@+id/nivel1_segundaCard"
         android:layout_width="100dp"
         android:layout_height="125dp"
-        android:contentDescription="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.176"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.706" />
+        app:layout_constraintVertical_bias="0.706"
+        android:contentDescription="@string/card"/>
 
     <TextView
         android:id="@+id/iniciarNivel1"
@@ -165,6 +165,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/volver" />
+        app:srcCompat="@drawable/volver"
+        android:contentDescription="@string/atras"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

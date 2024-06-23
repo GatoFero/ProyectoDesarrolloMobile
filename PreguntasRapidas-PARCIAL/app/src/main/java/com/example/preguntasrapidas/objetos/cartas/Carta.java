@@ -8,139 +8,111 @@ import android.content.Context;
 import android.transition.AutoTransition;
 import android.transition.Transition;
 import android.transition.TransitionManager;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 
 public class Carta {
-    //Principales atributos
-    private String cartaArriba;
-    private String cartaAbajo = "cover";
-    private int iniciacion;
-    protected String estadoCarta = "no usable";
-    public int codigoCarta;
-    protected ImageButton boton;
+
+    //Attributes
+    protected String cardUp;
+    protected String cardDown = "cover";
+    protected boolean start;
+    protected String stateCard = "no usable";
+    protected float codeCard;
+    protected ImageView container;
 
     //Elementos en juego o metodos
-    public float posicionY;
-    public float posicionX;
-    public boolean cola =  false;
+    protected float positionY;
+    protected float positionX;
+    protected boolean cola =  false;
 
 
-    public Carta(Context context, String cartaArriba, int codigoCarta, ImageButton boton, int iniciacion, float posicionY, float posicionX){
-        this.cartaArriba = cartaArriba;
-        this.codigoCarta = codigoCarta;
-        this.boton = boton;
-        this.posicionY = posicionY;
-        this.posicionX = posicionX;
-        this.iniciacion = iniciacion;
+    public Carta(){}
+    public Carta(String cardUp, float codeCard, ImageView container, boolean start, float positionY, float positionX){
+        this.cardUp = cardUp;
+        this.codeCard = codeCard;
+        this.container = container;
+        this.positionY = positionY;
+        this.positionX = positionX;
 
-        if(iniciacion == 0){
-            int setCover = context.getResources().getIdentifier(cartaAbajo, "drawable", context.getPackageName());
-            boton.setBackgroundResource(setCover);
-        } else if(iniciacion == 1){
-            int setCover = context.getResources().getIdentifier(cartaArriba, "drawable", context.getPackageName());
-            boton.setBackgroundResource(setCover);
+        if(start){
+            changeImageResource(cardUp);
+        } else{
+            changeImageResource(cardDown);
         }
 
-        if(posicionX != 0 && posicionY != 0){
-            presentar_carta(posicionY, posicionX);
-        }
+        introduceCard(positionY, positionX);
     }
 
-    //Estados de carta
-    public void cambiar_estado_usabilidad(String usabilidad){
-        estadoCarta = usabilidad;
-    }
-    public String estado(){
-        return estadoCarta;
-    }
+    //Methods essentials
+    protected void changeImageResource(String resource){
 
-    //Metodos de Juego
-    public void revelar_carta() {
-        if (estadoCarta.equals("usable")){
-            ObjectAnimator animacionGiro = ObjectAnimator.ofFloat(boton, "rotationY", 0, 180);
-            animacionGiro.setDuration(700);
-
-            animacionGiro.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    int setCarta = boton.getResources().getIdentifier(cartaArriba, "drawable", boton.getContext().getPackageName());
-                    boton.setBackgroundResource(setCarta);
-                }
-            });
-            animacionGiro.start();
-        }
+        int getImgResource = container.getResources().getIdentifier(resource, "drawable", container.getContext().getPackageName());
+        container.setImageResource(getImgResource);
     }
-    public void ocultar_carta(){
-        if (estadoCarta.equals("usable")){
-            ObjectAnimator animacionGiro = ObjectAnimator.ofFloat(boton, "rotationY", 180, 0);
-            animacionGiro.setDuration(700);
-
-            animacionGiro.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    int setCarta = boton.getResources().getIdentifier(cartaAbajo, "drawable", boton.getContext().getPackageName());
-                    boton.setBackgroundResource(setCarta);
-                }
-            });
-            animacionGiro.start();
-        }
+    protected void updatePosition(float posY, float posX){
+        positionY = posY;
+        positionX = posX;
+    }
+    public void forceCola(boolean force){
+        cola = force;
+    }
+    public boolean isCola() {
+        return cola;
     }
 
-    //Mover cards
-    public void forzar_cola(boolean cambiarCola){
-        cola = cambiarCola;
+    public void changeState(String newState){
+        stateCard = newState;
     }
-    public void presentar_carta(float posY, float posX) {
+    public float getCodeCard() {
+        return codeCard;
+    }
+    public float getPositionY() {
+        return positionY;
+    }
+    public float getPositionX() {
+        return positionX;
+    }
 
-        if (cola) {
-            System.out.println("Espera crj");
-        } else {
-            cola = true;
-            ConstraintLayout.LayoutParams posicicion = (ConstraintLayout.LayoutParams) boton.getLayoutParams();
-            ValueAnimator animacion = ValueAnimator.ofFloat(0, 1);
+    // Methods interactive
+    public void revealOrHideCard(boolean view){
 
-            animacion.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
-                    float valor = (float) animation.getAnimatedValue();
-                    posicicion.verticalBias = frame_mover(posicicion.verticalBias, posY, valor);
-                    posicicion.horizontalBias = frame_mover(posicicion.horizontalBias, posX, valor);
-
-                    boton.setLayoutParams(posicicion);
-                }
-            });
-            animacion.setDuration(3500);
-
-            animacion.addListener(new AnimatorListenerAdapter() {
+        if(stateCard.equals("usable")){
+            ObjectAnimator animationGiro;
+            if(view){
+                animationGiro = ObjectAnimator.ofFloat(container, "rotationY", 0, 180);
+                animationGiro.setDuration(700);
+                animationGiro.addListener((new AnimatorListenerAdapter() {
                     @Override
-                    public void onAnimationEnd(Animator animation) {cola = false;
+                    public void onAnimationEnd(Animator animation) {
+                        changeImageResource(cardUp);
                     }
-                });
-            animacion.start();
-            actualizar_posicion(posY, posX);
+                }));
+            } else{
+                animationGiro = ObjectAnimator.ofFloat(container, "rotationY", 180, 0);
+                animationGiro.setDuration(700);
+                animationGiro.addListener((new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        changeImageResource(cardDown);
+                    }
+                }));
+            }
+            animationGiro.start();
         }
-
     }
+    public void moveCard(float posY, float posX) {
 
-    private float frame_mover(float inicio, float fin, float fraccion) {
-        return inicio + fraccion * (fin - inicio);
-    }
-    public void posicionar_carta(float posY, float posX) {
-
-        if (cola){
-            System.out.println("Espera crj");
-        }
-        else{
+        if (!cola){
             cola = true;
-            ConstraintLayout constraintLayout = (ConstraintLayout) boton.getParent();
+            ConstraintLayout constraintLayout = (ConstraintLayout) container.getParent();
             ConstraintSet constraintSet = new ConstraintSet();
             constraintSet.clone(constraintLayout);
 
-            constraintSet.setVerticalBias(boton.getId(), posY);
-            constraintSet.setHorizontalBias(boton.getId(), posX);
+            constraintSet.setVerticalBias(container.getId(), posY);
+            constraintSet.setHorizontalBias(container.getId(), posX);
 
             AutoTransition transition = new AutoTransition();
             transition.setDuration(800);
@@ -152,13 +124,13 @@ public class Carta {
                 @Override
                 public void onTransitionEnd(Transition transition) {
                     cola = false;
-                    actualizar_posicion(posY, posX);
+                    updatePosition(posY, posX);
                 }
 
                 @Override
                 public void onTransitionCancel(Transition transition) {
-                        cola = false;
-                    }
+                    cola = false;
+                }
 
                 @Override
                 public void onTransitionPause(Transition transition) {}
@@ -170,9 +142,41 @@ public class Carta {
             TransitionManager.beginDelayedTransition(constraintLayout, transition);
             constraintSet.applyTo(constraintLayout);
         }
+        else{
+            System.out.println("Espera crj");
+        }
     }
-    protected void actualizar_posicion(float posY, float posX){
-        posicionY = posY;
-        posicionX = posX;
+    public void introduceCard(float posY, float posX) {
+
+        if (!cola) {
+            cola = true;
+            ConstraintLayout.LayoutParams position = (ConstraintLayout.LayoutParams) container.getLayoutParams();
+            ValueAnimator animation = ValueAnimator.ofFloat(0, 1);
+
+            animation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    float valor = (float) animation.getAnimatedValue();
+                    position.verticalBias = frame_mover(position.verticalBias, posY, valor);
+                    position.horizontalBias = frame_mover(position.horizontalBias, posX, valor);
+
+                    container.setLayoutParams(position);
+                }
+            });
+            animation.setDuration(3500);
+
+            animation.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {cola = false;
+                }
+            });
+            animation.start();
+            updatePosition(posY, posX);
+        } else {
+            System.out.println("Espera crj");
+        }
+    }
+    private float frame_mover(float inicio, float fin, float fraccion) {
+        return inicio + fraccion * (fin - inicio);
     }
 }

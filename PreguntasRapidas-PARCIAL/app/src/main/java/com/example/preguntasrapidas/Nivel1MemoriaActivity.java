@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -14,34 +15,30 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.preguntasrapidas.objetos.cartas.CartaMemoria;
-import com.example.preguntasrapidas.objetos.MesaMemoria;
-import com.example.preguntasrapidas.objetos.Posicion;
+import com.example.preguntasrapidas.objetos.ensabladores.MesaMemoria;
+import com.example.preguntasrapidas.objetos.util.Posicion;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Nivel1MemoriaActivity extends AppCompatActivity {
 
-    private ImageButton primeraCard;
-    private ImageButton segundaCard;
-    private ImageButton terceraCard;
-    private ImageButton cuartaCard;
-    private ImageButton quintaCard;
-    private ImageButton sextaCard;
-    private ImageButton septimaCard;
-    private ImageButton octavaCard;
+    private ImageView primeraCard;
+    private ImageView segundaCard;
+    private ImageView terceraCard;
+    private ImageView cuartaCard;
+    private ImageView quintaCard;
+    private ImageView sextaCard;
+    private ImageView septimaCard;
+    private ImageView octavaCard;
     private TextView iniciarNivel1;
-    private ArrayList<CartaMemoria> cartas = new ArrayList<>();
-    private ArrayList<Posicion> posiciones = new ArrayList<>();
+    private LinkedList<CartaMemoria> cartas = new LinkedList<>();
+    private LinkedList<Posicion> posiciones = new LinkedList<>();
     private TextView intentos;
     private TextView scoreMemoria;
     private MesaMemoria mesa;
-
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,19 +75,19 @@ public class Nivel1MemoriaActivity extends AppCompatActivity {
         scoreMemoria = findViewById(R.id.scoreMemoria);
         iniciarNivel1 = findViewById(R.id.iniciarNivel1);
 
-        mesa = new MesaMemoria(cartas, posiciones, scoreMemoria, intentos, 7, 1);
+        mesa = new MesaMemoria(cartas, posiciones, intentos, scoreMemoria, 7, 1);
 
-        preparar_mesa();
+       setUpMesa();
 
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                if (!cartas.get(0).cola){
+                if (!cartas.get(0).isCola()){
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            mesa.setIntents();
                             iniciarNivel1.setText("Toca Para Empezar");
-                            mesa.establecer_medidas_nivel();
                         }
                     });
                     cancel();
@@ -104,36 +101,36 @@ public class Nivel1MemoriaActivity extends AppCompatActivity {
                 boolean cola = false;
 
                 for(CartaMemoria cartaMemoria : cartas){
-                    if(!cartaMemoria.cola){
+                    if(!cartaMemoria.isCola()){
                         cola = true;
                         break;
                     }
                 }
                 if (cola){
-                    mesa.barajar_cartas();
+                    mesa.startGame();
                     ((ViewGroup) v.getParent()).removeView(v);
                 }
             }
         });
     }
-    private void preparar_mesa(){
+    private void setUpMesa(){
 
-        cartas.add(new CartaMemoria(this,"card1", 1, primeraCard,
-        0, 0.471f, 0.498f, mesa));
-        cartas.add(new CartaMemoria(this,"card1", 1, segundaCard,
-        0,0.471f, 0.498f, mesa));
-        cartas.add(new CartaMemoria(this,"card2", 2, terceraCard,
-        0,0.471f, 0.498f, mesa));
-        cartas.add(new CartaMemoria(this,"card2", 2, cuartaCard,
-        0,0.471f, 0.498f, mesa));
-        cartas.add(new CartaMemoria(this,"card3", 3, quintaCard,
-        0,0.471f, 0.498f, mesa));
-        cartas.add(new CartaMemoria(this,"card3", 3, sextaCard,
-        0,0.471f, 0.498f, mesa));
-        cartas.add(new CartaMemoria(this,"card4", 4, septimaCard,
-        0,0.471f, 0.498f, mesa));
-        cartas.add(new CartaMemoria(this,"card4", 4, octavaCard,
-        0,0.471f, 0.498f, mesa));
+        cartas.add(new CartaMemoria("card1", 1, primeraCard,
+                false, 0.471f, 0.498f, mesa));
+        cartas.add(new CartaMemoria("card1", 1, segundaCard,
+                false,0.471f, 0.498f, mesa));
+        cartas.add(new CartaMemoria("card2", 2, terceraCard,
+                false,0.471f, 0.498f, mesa));
+        cartas.add(new CartaMemoria("card2", 2, cuartaCard,
+                false,0.471f, 0.498f, mesa));
+        cartas.add(new CartaMemoria("card3", 3, quintaCard,
+                false,0.471f, 0.498f, mesa));
+        cartas.add(new CartaMemoria("card3", 3, sextaCard,
+                false,0.471f, 0.498f, mesa));
+        cartas.add(new CartaMemoria("card4", 4, septimaCard,
+                false,0.471f, 0.498f, mesa));
+        cartas.add(new CartaMemoria("card4", 4, octavaCard,
+                false,0.471f, 0.498f, mesa));
 
         posiciones.add(new Posicion(0.219f, 0.093f));
         posiciones.add(new Posicion(0.219f, 0.498f));

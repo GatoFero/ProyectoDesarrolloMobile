@@ -16,7 +16,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.preguntasrapidas.objetos.ListaPreguntas;
+import com.example.preguntasrapidas.objetos.ensabladores.ListaPreguntas;
 import com.example.preguntasrapidas.objetos.Score;
 
 public class PreguntasJuegoActivity extends AppCompatActivity {
