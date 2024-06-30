@@ -13,10 +13,16 @@
         android:theme="@style/Theme.PreguntasRapidas"
         tools:targetApi="31">
         <activity
+            android:name=".BattleArena"
+            android:exported="false" />
+        <activity
+            android:name=".battlefield"
+            android:exported="false" />
+        <activity
             android:name=".Nivel2MemoriaActivity"
             android:exported="false" />
         <activity
-            android:name=".Nivel1MemoriaActivity"
+            android:name=".PartidaMemoriaActivity"
             android:exported="false" />
         <activity
             android:name=".NivelCartasMemoriaActivity"

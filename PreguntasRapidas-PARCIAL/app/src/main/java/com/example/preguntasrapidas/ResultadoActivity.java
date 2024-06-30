@@ -1,5 +1,6 @@
 package com.example.preguntasrapidas;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import  com.example.preguntasrapidas.objetos.Score;
+import com.example.preguntasrapidas.objetos.util.Score;
 
 
 
@@ -22,49 +23,10 @@ public class ResultadoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resultado);
 
-        Score score = (Score) getIntent().getSerializableExtra("score");
-        int tiempoRestante = getIntent().getIntExtra("tiempoRestante", 0);
-
-        TextView scoreView = findViewById(R.id.txvPuntaje);
-        Button reiniciarButton = findViewById(R.id.btnReiniciar);
-        Button gameButton = findViewById(R.id.btnJuego);
-        Button themeButton = findViewById(R.id.btnCategoria);
-
-        // Configurar los textos
-        if (score != null) {
-            scoreView.setText("Puntuación: " + score.getPuntos());
-        } else {
-            scoreView.setText("Puntuación: 0");
-        }
-
-
-
-        gameButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ResultadoActivity.this, JuegosActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        themeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ResultadoActivity.this, TemaActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        reiniciarButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ResultadoActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+        Bundle getResult = getIntent().getExtras();
+        int getScore = getResult.getInt("score");
+        TextView score = findViewById(R.id.puntos);
+        score.setText(String.valueOf(getScore));
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.juegoppt), (v, insets) -> {
@@ -72,5 +34,23 @@ public class ResultadoActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return WindowInsetsCompat.CONSUMED;
         });
+    }
+
+    public void translator(View v){
+        Button translateActivity = (Button) v;
+        String translateActivitySelect = translateActivity.getText().toString().toLowerCase();
+        Intent transferActivity = new Intent();
+        switch (translateActivitySelect){
+            case "nivel":
+                transferActivity = new Intent(ResultadoActivity.this,NivelCartasMemoriaActivity.class);
+                break;
+            case "juegos":
+                transferActivity = new Intent(ResultadoActivity.this,JuegosActivity.class);
+                break;
+            case "inicio":
+                transferActivity = new Intent(ResultadoActivity.this,MainActivity.class);
+                break;
+        }
+        startActivity(transferActivity);
     }
 }

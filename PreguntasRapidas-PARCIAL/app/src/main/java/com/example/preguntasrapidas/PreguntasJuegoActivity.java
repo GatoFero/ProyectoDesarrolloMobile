@@ -16,8 +16,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.preguntasrapidas.objetos.ensabladores.ListaPreguntas;
-import com.example.preguntasrapidas.objetos.Score;
+import com.example.preguntasrapidas.objetos.ensabladores.ListaPregunta;
+import com.example.preguntasrapidas.objetos.util.Score;
 
 public class PreguntasJuegoActivity extends AppCompatActivity {
 
@@ -45,10 +45,10 @@ public class PreguntasJuegoActivity extends AppCompatActivity {
         capturarPreguntas();
     }
 
-    public ListaPreguntas preguntasEnEjecucion;
+    public ListaPregunta preguntasEnEjecucion;
     public void capturarPreguntas(){
         Bundle bundle = getIntent().getExtras();
-        preguntasEnEjecucion = (ListaPreguntas) bundle.getSerializable("preguntasEnJuego");
+        preguntasEnEjecucion = (ListaPregunta) bundle.getSerializable("preguntasEnJuego");
         totalPreguntas.setText(String.valueOf(preguntasEnEjecucion.definirTotal()));
         sistemaPreguntas();
     }
@@ -134,7 +134,7 @@ public class PreguntasJuegoActivity extends AppCompatActivity {
         if (respuestaHecha.equals(respuesta)){
             if(contador < preguntasEnEjecucion.definirTotal()) {
                 score.sumarScore(100);
-                scoreView.setText(String.valueOf(score.puntos));
+                scoreView.setText(String.valueOf(score.getPuntos()));
                 tiempoView.setText("Respuesta Correcta");
 
                     handler1.postDelayed(new Runnable() {

@@ -1,4 +1,4 @@
-package com.example.preguntasrapidas.objetos;
+package com.example.preguntasrapidas.objetos.clases_padre;
 
 import java.io.Serializable;
 

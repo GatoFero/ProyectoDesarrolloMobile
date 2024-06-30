@@ -1,4 +1,4 @@
-package com.example.preguntasrapidas.objetos.cartas;
+package com.example.preguntasrapidas.objetos.clases_padre;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -8,6 +8,7 @@ import android.content.Context;
 import android.transition.AutoTransition;
 import android.transition.Transition;
 import android.transition.TransitionManager;
+import android.view.View;
 import android.widget.ImageView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -18,28 +19,62 @@ public class Carta {
     //Attributes
     protected String cardUp;
     protected String cardDown = "cover";
-    protected boolean start;
-    protected String stateCard = "no usable";
+    protected String stateCard = Carta.STATE_NO_USABLE;
     protected float codeCard;
     protected ImageView container;
+    protected Context context;
+
+    //Constants
+    public static final String STATE_USABLE = "usable";
+    public static final String STATE_NO_USABLE = "no usable";
 
     //Elementos en juego o metodos
     public float positionY;
     public float positionX;
-    protected boolean cola =  false;
+    protected boolean cola = false;
 
+    public Carta() {}
 
-    public Carta(){}
-    public Carta(String cardUp, float codeCard, ImageView container, boolean start, float positionY, float positionX){
+    public Carta(Context context, ConstraintLayout parentLayout, String cardUp, float codeCard, boolean start, int width, int height, float initialPositionY, float initialPositionX, float positionY, float positionX) {
+        this.context = context;
         this.cardUp = cardUp;
         this.codeCard = codeCard;
-        this.container = container;
         this.positionY = positionY;
         this.positionX = positionX;
 
-        if(start){
+        // Calcular dimensiones en píxeles a partir de dp
+        float scale = context.getResources().getDisplayMetrics().density;
+        int widthInPixels = (int) (width * scale + 0.5f);
+        int heightInPixels = (int) (height * scale + 0.5f);
+
+        // Crear y configurar ImageView
+        this.container = new ImageView(context);
+        this.container.setId(View.generateViewId());
+
+        ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams(widthInPixels, heightInPixels);
+        this.container.setLayoutParams(layoutParams);
+
+        parentLayout.addView(this.container);
+
+        // Configurar constraints
+        ConstraintSet constraintSet = new ConstraintSet();
+        constraintSet.clone(parentLayout);
+        constraintSet.connect(this.container.getId(), ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP, 0);
+        constraintSet.connect(this.container.getId(), ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START, 0);
+        constraintSet.connect(this.container.getId(), ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM, 0);
+        constraintSet.connect(this.container.getId(), ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END, 0);
+
+        // Establecer vertical bias
+        constraintSet.setVerticalBias(this.container.getId(), initialPositionY);
+
+        // Establecer horizontal bias
+        constraintSet.setHorizontalBias(this.container.getId(), initialPositionX);
+
+        constraintSet.applyTo(parentLayout);
+
+        if (start) {
             changeImageResource(cardUp);
-        } else{
+        } else {
             changeImageResource(cardDown);
         }
 
@@ -47,35 +82,37 @@ public class Carta {
     }
 
     //Methods essentials
-    protected void changeImageResource(String resource){
-
+    protected void changeImageResource(String resource) {
         int getImgResource = container.getResources().getIdentifier(resource, "drawable", container.getContext().getPackageName());
         container.setImageResource(getImgResource);
     }
-    protected void updatePosition(float posY, float posX){
+
+    protected void updatePosition(float posY, float posX) {
         positionY = posY;
         positionX = posX;
     }
-    public void forceCola(boolean force){
+
+    public void forceCola(boolean force) {
         cola = force;
     }
+
     public boolean isCola() {
         return cola;
     }
 
-    public void changeState(String newState){
+    public void changeState(String newState) {
         stateCard = newState;
     }
+
     public float getCodeCard() {
         return codeCard;
     }
 
     // Methods interactive
-    public void revealOrHideCard(boolean view){
-
-        if(stateCard.equals("usable")){
+    public void revealOrHideCard(boolean view) {
+        if (stateCard.equals(Carta.STATE_USABLE)) {
             ObjectAnimator animationGiro;
-            if(view){
+            if (view) {
                 animationGiro = ObjectAnimator.ofFloat(container, "rotationY", 0, 180);
                 animationGiro.setDuration(700);
                 animationGiro.addListener((new AnimatorListenerAdapter() {
@@ -84,7 +121,7 @@ public class Carta {
                         changeImageResource(cardUp);
                     }
                 }));
-            } else{
+            } else {
                 animationGiro = ObjectAnimator.ofFloat(container, "rotationY", 180, 0);
                 animationGiro.setDuration(700);
                 animationGiro.addListener((new AnimatorListenerAdapter() {
@@ -97,9 +134,9 @@ public class Carta {
             animationGiro.start();
         }
     }
-    public void moveCard(float posY, float posX) {
 
-        if (!cola){
+    public void moveCard(float posY, float posX) {
+        if (!cola) {
             updatePosition(posY, posX);
             cola = true;
             ConstraintLayout constraintLayout = (ConstraintLayout) container.getParent();
@@ -111,7 +148,7 @@ public class Carta {
 
             AutoTransition transition = new AutoTransition();
             transition.setDuration(800);
-            transition.addListener(new Transition.TransitionListener(){
+            transition.addListener(new Transition.TransitionListener() {
 
                 @Override
                 public void onTransitionStart(Transition transition) {}
@@ -135,13 +172,12 @@ public class Carta {
 
             TransitionManager.beginDelayedTransition(constraintLayout, transition);
             constraintSet.applyTo(constraintLayout);
-        }
-        else{
+        } else {
             System.out.println("Espera crj");
         }
     }
-    public void introduceCard(float posY, float posX) {
 
+    public void introduceCard(float posY, float posX) {
         if (!cola) {
             cola = true;
             updatePosition(posY, posX);
@@ -162,7 +198,8 @@ public class Carta {
 
             animation.addListener(new AnimatorListenerAdapter() {
                 @Override
-                public void onAnimationEnd(Animator animation) {cola = false;
+                public void onAnimationEnd(Animator animation) {
+                    cola = false;
                 }
             });
             animation.start();
@@ -170,6 +207,7 @@ public class Carta {
             System.out.println("Espera crj");
         }
     }
+
     private float frame_mover(float inicio, float fin, float fraccion) {
         return inicio + fraccion * (fin - inicio);
     }

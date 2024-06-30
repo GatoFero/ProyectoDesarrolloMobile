@@ -101,4 +101,18 @@
         app:layout_constraintTop_toBottomOf="@+id/btnPpt"
         app:layout_constraintVertical_bias="0.104" />
 
+    <Button
+        android:id="@+id/arena"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="arena"
+        android:onClick="playBattleArena"
+        android:text="arena"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.775"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.538" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

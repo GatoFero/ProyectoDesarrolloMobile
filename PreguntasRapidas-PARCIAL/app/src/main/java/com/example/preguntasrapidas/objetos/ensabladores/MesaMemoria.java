@@ -1,22 +1,29 @@
 package com.example.preguntasrapidas.objetos.ensabladores;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.widget.TextView;
 
+import com.example.preguntasrapidas.PartidaMemoriaActivity;
+import com.example.preguntasrapidas.ResultadoActivity;
+import com.example.preguntasrapidas.objetos.clases_padre.Carta;
 import com.example.preguntasrapidas.objetos.util.Posicion;
-import com.example.preguntasrapidas.objetos.Score;
+import com.example.preguntasrapidas.objetos.util.Score;
 import com.example.preguntasrapidas.objetos.cartas.CartaMemoria;
 
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 
 public class MesaMemoria {
 
     //Objetos necesarios
-    protected LinkedList<CartaMemoria> memoryCards;
-    protected LinkedList<Posicion> positions;
+    protected List<CartaMemoria> memoryCards;
+    protected List<Posicion> positions;
     protected TextView intentsView;
     protected TextView scoreView;
     protected Score score = new Score(0);
@@ -26,6 +33,7 @@ public class MesaMemoria {
     protected int totalCouple;
     protected int counterGame = 1;
     protected int difficulty;
+    private Context context;
 
     //Variables para manejar cartas
     protected CartaMemoria firstOptionCard;
@@ -34,13 +42,14 @@ public class MesaMemoria {
 
 
     //Constructor
-    public MesaMemoria(LinkedList<CartaMemoria> memoryCards, LinkedList<Posicion> positions, TextView intentsView, TextView scoreView, int intents, int difficulty) {
+    public MesaMemoria(Context context, LinkedList<CartaMemoria> memoryCards, LinkedList<Posicion> positions, TextView intentsView, TextView scoreView, int intents, int difficulty) {
         this.memoryCards = memoryCards;
         this.positions = positions;
         this.intentsView = intentsView;
         this.scoreView = scoreView;
         this.intents = intents;
         this.difficulty = difficulty;
+        this.context = context;
     }
 
     //Set Game
@@ -49,7 +58,7 @@ public class MesaMemoria {
         intentsView.setText(String.valueOf(intents));
     }
     public void startGame(){
-        changeStateCards("usable");
+        changeStateCards(Carta.STATE_USABLE);
         shuffleCards();
     }
     public void shuffleCards(){
@@ -74,6 +83,7 @@ public class MesaMemoria {
                 newCards.add(card);
             }
         }
+
         for (Posicion position : positions) {
             if ((position.posicionY == cardRemove.positionY) && (position.posicionX == cardRemove.positionX)) {
                 System.out.println("Se removio");
@@ -109,7 +119,7 @@ public class MesaMemoria {
         int index = memoryCards.indexOf(cardPlay);
         firstOptionCard = memoryCards.get(index);
         firstOptionCard.revealOrHideCard(true);
-        firstOptionCard.changeState("no usable");
+        firstOptionCard.changeState(Carta.STATE_NO_USABLE);
     }
     public void secondOption(CartaMemoria cardPlay){
 
@@ -117,7 +127,7 @@ public class MesaMemoria {
         int index = memoryCards.indexOf(cardPlay);
         secondOptionCard = memoryCards.get(index);
         secondOptionCard.revealOrHideCard(true);
-        changeStateCards("no usable");
+        changeStateCards(Carta.STATE_NO_USABLE);
 
         if (totalCode == codeSelect) {
             correctCouple();
@@ -131,9 +141,9 @@ public class MesaMemoria {
 
         removeCard(firstOptionCard);
         removeCard(secondOptionCard);
-        changeStateCards("usable");
+        changeStateCards(Carta.STATE_USABLE);
         score.sumarScore(50);
-        scoreView.setText(String.valueOf(score.puntos));
+        scoreView.setText(String.valueOf(score.getPuntos()));
 
         if (totalCouple > 1){
             totalCouple--;
@@ -149,6 +159,18 @@ public class MesaMemoria {
                 },700);
             }
         }
+        else{
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Bundle sendScore = new Bundle();
+                    sendScore.putInt("score",score.getPuntos());
+                    Intent goResult = new Intent(context, ResultadoActivity.class);
+                    goResult.putExtras(sendScore);
+                    context.startActivity(goResult);
+                }
+            },1800);
+        }
     }
     private void incorrectCouple(){
 
@@ -157,15 +179,15 @@ public class MesaMemoria {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                firstOptionCard.changeState("usable");
-                secondOptionCard.changeState("usable");
+                firstOptionCard.changeState(Carta.STATE_USABLE);
+                secondOptionCard.changeState(Carta.STATE_USABLE);
                 firstOptionCard.revealOrHideCard(false);
                 secondOptionCard.revealOrHideCard(false);
-                changeStateCards("no usable");
+                changeStateCards(Carta.STATE_NO_USABLE);
                 end();
             }
             public void end(){
-                changeStateCards("usable");
+                changeStateCards(Carta.STATE_USABLE);
             }
         },1000);
     }

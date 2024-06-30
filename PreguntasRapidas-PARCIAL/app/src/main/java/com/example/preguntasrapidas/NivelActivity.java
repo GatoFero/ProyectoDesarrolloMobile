@@ -12,8 +12,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.preguntasrapidas.objetos.ensabladores.ListaPreguntas;
-import com.example.preguntasrapidas.objetos.Pregunta;
+import com.example.preguntasrapidas.objetos.ensabladores.ListaPregunta;
+import com.example.preguntasrapidas.objetos.clases_padre.Pregunta;
 
 import java.util.ArrayList;
 
@@ -71,7 +71,7 @@ public class NivelActivity extends AppCompatActivity {
         if (numeroPreguntas > 0){
             Bundle bundle = getIntent().getExtras();
             ArrayList<Pregunta> preguntasListas = (ArrayList<Pregunta>) bundle.getSerializable("prepararPreguntas");
-            ListaPreguntas listaPartida = new ListaPreguntas(preguntasListas, numeroPreguntas, tiempo);
+            ListaPregunta listaPartida = new ListaPregunta(preguntasListas, numeroPreguntas, tiempo);
 
             Intent intent = new Intent(this, PreguntasJuegoActivity.class);
             Bundle bundle1 = new Bundle();

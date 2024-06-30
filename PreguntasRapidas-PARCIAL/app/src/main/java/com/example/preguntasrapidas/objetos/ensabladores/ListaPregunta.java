@@ -1,6 +1,5 @@
 package com.example.preguntasrapidas.objetos.ensabladores;
 
-import android.content.Context;
 import android.graphics.RenderEffect;
 import android.graphics.Shader;
 import android.os.Build;
@@ -8,19 +7,19 @@ import android.os.Handler;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.example.preguntasrapidas.objetos.Pregunta;
+import com.example.preguntasrapidas.objetos.clases_padre.Pregunta;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class ListaPreguntas implements Serializable {
+public class ListaPregunta implements Serializable {
     private transient Handler handler;
     private ArrayList<Pregunta> preguntas;
     private int dificultad;
     private int tiempo;
 
-    public ListaPreguntas(ArrayList<Pregunta> lista, int dificultad, int tiempo) {
+    public ListaPregunta(ArrayList<Pregunta> lista, int dificultad, int tiempo) {
         this.dificultad = dificultad;
         this.tiempo = tiempo;
         this.handler = new Handler();
