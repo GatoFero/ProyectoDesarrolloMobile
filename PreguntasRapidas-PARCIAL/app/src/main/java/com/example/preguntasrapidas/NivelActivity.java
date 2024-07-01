@@ -66,8 +66,9 @@ public class NivelActivity extends AppCompatActivity {
                 tiempo = 2;
                 break;
         }
+        iniciarPartida();
     }
-    public void iniciarPartida(View v){
+    public void iniciarPartida(){
         if (numeroPreguntas > 0){
             Bundle bundle = getIntent().getExtras();
             ArrayList<Pregunta> preguntasListas = (ArrayList<Pregunta>) bundle.getSerializable("prepararPreguntas");

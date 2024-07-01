@@ -3,18 +3,18 @@ package com.example.preguntasrapidas.objetos.util;
 import java.io.Serializable;
 
 public class Score implements Serializable {
-    private int puntos;
+    private int score;
 
-    public Score(int puntos){
-        this.puntos = puntos;
+    public Score(int score){
+        this.score = score;
     }
-    public void sumarScore(int aumento){
-        puntos = puntos + aumento;
+    public void sumScore(int increase){
+        score = score + increase;
     }
-    public void restarPuntos(int restar){
-        puntos = puntos - restar;
+    public void subtractScore(int decrease){
+        score = score - decrease;
     }
-    public int getPuntos() {
-        return puntos;
+    public int getScore() {
+        return score;
     }
 }

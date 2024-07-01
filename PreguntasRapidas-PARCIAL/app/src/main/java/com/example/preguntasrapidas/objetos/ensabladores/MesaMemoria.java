@@ -1,17 +1,13 @@
 package com.example.preguntasrapidas.objetos.ensabladores;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
 import android.widget.TextView;
 
-import com.example.preguntasrapidas.PartidaMemoriaActivity;
-import com.example.preguntasrapidas.ResultadoActivity;
+import com.example.preguntasrapidas.NivelCartasMemoriaActivity;
 import com.example.preguntasrapidas.objetos.clases_padre.Carta;
 import com.example.preguntasrapidas.objetos.util.Posicion;
+import com.example.preguntasrapidas.objetos.util.Resultado;
 import com.example.preguntasrapidas.objetos.util.Score;
 import com.example.preguntasrapidas.objetos.cartas.CartaMemoria;
 
@@ -33,7 +29,7 @@ public class MesaMemoria {
     protected int totalCouple;
     protected int counterGame = 1;
     protected int difficulty;
-    private Context context;
+    private final Resultado resultGame;
 
     //Variables para manejar cartas
     protected CartaMemoria firstOptionCard;
@@ -49,7 +45,7 @@ public class MesaMemoria {
         this.scoreView = scoreView;
         this.intents = intents;
         this.difficulty = difficulty;
-        this.context = context;
+        resultGame = new Resultado(context);
     }
 
     //Set Game
@@ -62,7 +58,6 @@ public class MesaMemoria {
         shuffleCards();
     }
     public void shuffleCards(){
-
         Collections.shuffle(positions);
         for (int i = 0; i < positions.size(); i++) {
             memoryCards.get(i).moveCard(positions.get(i).posicionY, positions.get(i).posicionX);
@@ -142,8 +137,8 @@ public class MesaMemoria {
         removeCard(firstOptionCard);
         removeCard(secondOptionCard);
         changeStateCards(Carta.STATE_USABLE);
-        score.sumarScore(50);
-        scoreView.setText(String.valueOf(score.getPuntos()));
+        score.sumScore(50);
+        scoreView.setText(String.valueOf(score.getScore()));
 
         if (totalCouple > 1){
             totalCouple--;
@@ -160,16 +155,7 @@ public class MesaMemoria {
             }
         }
         else{
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Bundle sendScore = new Bundle();
-                    sendScore.putInt("score",score.getPuntos());
-                    Intent goResult = new Intent(context, ResultadoActivity.class);
-                    goResult.putExtras(sendScore);
-                    context.startActivity(goResult);
-                }
-            },1800);
+            sendResultActivity(resultGame.RESULT_COMPLETE,resultGame.COLOR_COMPLETE);
         }
     }
     private void incorrectCouple(){
@@ -190,5 +176,13 @@ public class MesaMemoria {
                 changeStateCards(Carta.STATE_USABLE);
             }
         },1000);
+        if(intents == 0){
+            sendResultActivity(resultGame.RESULT_INCOMPLETE, resultGame.COLOR_INCOMPLETE);
+        }
+    }
+    private void sendResultActivity(String stateGameResult, String colorStateGame){
+        resultGame.chargeInfo(score.getScore(),stateGameResult,colorStateGame, NivelCartasMemoriaActivity.class);
+        resultGame.saveResult();
+        resultGame.goResult();
     }
 }

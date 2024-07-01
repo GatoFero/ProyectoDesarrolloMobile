@@ -2,6 +2,7 @@ package com.example.preguntasrapidas;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.preguntasrapidas.objetos.util.Resultado;
 import com.example.preguntasrapidas.objetos.util.Score;
 
 
@@ -18,16 +21,21 @@ import com.example.preguntasrapidas.objetos.util.Score;
 
 public class ResultadoActivity extends AppCompatActivity {
 
+    private Resultado result;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resultado);
 
         Bundle getResult = getIntent().getExtras();
-        int getScore = getResult.getInt("score");
-        TextView score = findViewById(R.id.puntos);
-        score.setText(String.valueOf(getScore));
+        result = (Resultado) getResult.getSerializable("infoResult");
 
+        TextView scoreView = findViewById(R.id.puntos);
+        scoreView.setText(String.valueOf(result.getScore()));
+
+        TextView resultView = findViewById(R.id.resultadoGame);
+        resultView.setText(result.getGameResult());
+        resultView.setTextColor(Color.parseColor(result.getColorResult()));
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.juegoppt), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -42,7 +50,7 @@ public class ResultadoActivity extends AppCompatActivity {
         Intent transferActivity = new Intent();
         switch (translateActivitySelect){
             case "nivel":
-                transferActivity = new Intent(ResultadoActivity.this,NivelCartasMemoriaActivity.class);
+                transferActivity = new Intent(ResultadoActivity.this,result.getReturnLevel());
                 break;
             case "juegos":
                 transferActivity = new Intent(ResultadoActivity.this,JuegosActivity.class);

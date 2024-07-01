@@ -19,21 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.39" />
-
-    <Button
-        android:id="@+id/btnFacil"
-        android:layout_width="277dp"
-        android:layout_height="57dp"
-        android:backgroundTint="#2dc2e3"
-        android:onClick="seleccionarDificultad"
-        android:text="Facil"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.268" />
+        app:layout_constraintVertical_bias="0.455" />
 
     <Button
         android:id="@+id/btnInfierno"
@@ -47,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.642" />
+        app:layout_constraintVertical_bias="0.707" />
 
     <Button
         android:id="@+id/btnDificil"
@@ -61,22 +47,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.519" />
+        app:layout_constraintVertical_bias="0.584" />
 
     <Button
-        android:id="@+id/btnStart"
-        android:layout_width="158dp"
-        android:layout_height="65dp"
+        android:id="@+id/btnFacil"
+        android:layout_width="277dp"
+        android:layout_height="57dp"
         android:backgroundTint="#2dc2e3"
-        android:onClick="iniciarPartida"
-        android:text="Start"
-        android:textSize="24sp"
+        android:onClick="seleccionarDificultad"
+        android:text="Facil"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.828" />
+        app:layout_constraintVertical_bias="0.333" />
 
     <ImageButton
         android:id="@+id/imbBacktwo"

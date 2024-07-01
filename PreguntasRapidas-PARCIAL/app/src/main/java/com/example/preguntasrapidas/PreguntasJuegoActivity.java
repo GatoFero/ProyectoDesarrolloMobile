@@ -38,7 +38,7 @@ public class PreguntasJuegoActivity extends AppCompatActivity {
         cuartaOpcion = findViewById(R.id.btnCuartaOpcion);
         foto = findViewById(R.id.imgFoto);
         tiempoView = findViewById(R.id.txvTiempo);
-        scoreView = findViewById(R.id.txvPuntaje);
+        scoreView = findViewById(R.id.resultadoGame);
         preguntaActual = findViewById(R.id.txvIndicador);
         totalPreguntas = findViewById(R.id.txvTotalPreguntas);
 
@@ -133,8 +133,8 @@ public class PreguntasJuegoActivity extends AppCompatActivity {
 
         if (respuestaHecha.equals(respuesta)){
             if(contador < preguntasEnEjecucion.definirTotal()) {
-                score.sumarScore(100);
-                scoreView.setText(String.valueOf(score.getPuntos()));
+                score.sumScore(100);
+                scoreView.setText(String.valueOf(score.getScore()));
                 tiempoView.setText("Respuesta Correcta");
 
                     handler1.postDelayed(new Runnable() {

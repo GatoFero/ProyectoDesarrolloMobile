@@ -8,18 +8,19 @@
     tools:context=".ResultadoActivity">
 
     <TextView
-        android:id="@+id/txvPuntaje"
-        android:layout_width="188dp"
-        android:layout_height="26dp"
-        android:text="Tu Puntuación"
+        android:id="@+id/resultadoGame"
+        android:layout_width="256dp"
+        android:layout_height="47dp"
+        android:text="6"
         android:textAlignment="center"
-        android:textColor="#60d8f0"
-        android:textSize="20sp"
+        android:textColor="#FD4141"
+        android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.252" />
+        app:layout_constraintVertical_bias="0.312" />
 
     <Button
         android:id="@+id/btnReiniciar"
@@ -32,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txvPuntaje"
+        app:layout_constraintTop_toBottomOf="@+id/resultadoGame"
         app:layout_constraintVertical_bias="0.693" />
 
     <Button
