@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/categoryLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TemaActivity">
+
+    <ImageButton
+        android:id="@+id/imbBackone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00FFFFFF"
+        android:contentDescription="back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
+        app:srcCompat="@drawable/volver" />
+
+    <TextView
+        android:id="@+id/txvSeleccionTema"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selecciona un Tema"
+        android:textColor="#156a89"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.052" />
+
+    <ImageButton
+        android:id="@+id/imbZoologico"
+        android:layout_width="100dp"
+        android:layout_height="110dp"
+        android:backgroundTint="#00FFFFFF"
+        android:contentDescription="1"
+        android:onClick="setQuestions"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.192"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.186"
+        app:srcCompat="@drawable/temazoo" />
+
+    <ImageButton
+        android:id="@+id/imbVideojuegos"
+        android:layout_width="100dp"
+        android:layout_height="110dp"
+        android:backgroundTint="#aaebf7"
+        android:contentDescription="2"
+        android:onClick="setQuestions"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.71"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.185"
+        app:srcCompat="@drawable/temavideojuego" />
+
+    <ImageButton
+        android:id="@+id/imbComponentes"
+        android:layout_width="100dp"
+        android:layout_height="110dp"
+        android:backgroundTint="#aaebf7"
+        android:contentDescription="3"
+        android:onClick="setQuestions"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.192"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.438"
+        app:srcCompat="@drawable/temacomponente"/>
+
+    <ImageButton
+        android:id="@+id/imbYoutubers"
+        android:layout_width="100dp"
+        android:layout_height="110dp"
+        android:backgroundTint="#aaebf7"
+        android:contentDescription="4"
+        android:onClick="setQuestions"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.71"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.438"
+        app:srcCompat="@drawable/temayoutube"/>
+
+    <TextView
+        android:id="@+id/txvZoologico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Zoologico"
+        android:textColor="#156a89"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.229"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imbZoologico" />
+
+    <TextView
+        android:id="@+id/txvVideojuegos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Videojuegos"
+        android:textColor="#156a89"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.702"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.328" />
+
+    <TextView
+        android:id="@+id/txvComponentes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Componentes"
+        android:textColor="#156a89"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.185"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.536" />
+
+    <TextView
+        android:id="@+id/txvYoutubers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Youtubers"
+        android:textColor="#156a89"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.659"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.536" />
+
+    <ImageButton
+        android:id="@+id/imbCaricaturas"
+        android:layout_width="100dp"
+        android:layout_height="110dp"
+        android:backgroundTint="#aaebf7"
+        android:contentDescription="5"
+        android:onClick="setQuestions"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.192"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.657"
+        app:srcCompat="@drawable/temacaricatura"/>
+
+    <TextView
+        android:id="@+id/txvCaricaturas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Caricaturas"
+        android:textColor="#156a89"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.206"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.727" />
+
+    <ImageButton
+        android:id="@+id/imbAnime"
+        android:layout_width="100dp"
+        android:layout_height="110dp"
+        android:backgroundTint="#aaebf7"
+        android:contentDescription="6"
+        android:onClick="setQuestions"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.71"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.657"
+        app:srcCompat="@drawable/temanime"/>
+
+    <TextView
+        android:id="@+id/txvAnime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Anime"
+        android:textColor="#156a89"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.681"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.727" />
+
+    <ImageButton
+        android:id="@+id/imbArticulos"
+        android:layout_width="100dp"
+        android:layout_height="110dp"
+        android:backgroundTint="#aaebf7"
+        android:contentDescription="7"
+        android:onClick="setQuestions"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.192"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.887"
+        app:srcCompat="@drawable/temaarticulo"/>
+
+    <ImageButton
+        android:id="@+id/imbFrutas"
+        android:layout_width="100dp"
+        android:layout_height="110dp"
+        android:backgroundTint="#aaebf7"
+        android:contentDescription="8"
+        android:onClick="setQuestions"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.71"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.887"
+        app:srcCompat="@drawable/temautas"/>
+
+    <TextView
+        android:id="@+id/txvArticulos"
+        android:layout_width="66dp"
+        android:layout_height="26dp"
+        android:text="Articulos"
+        android:textColor="#156a89"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.22"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.937"
+        />
+
+    <TextView
+        android:id="@+id/txvFrutas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Frutas"
+        android:textColor="#156a89"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.681"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.928" />
+</androidx.constraintlayout.widget.ConstraintLayout>

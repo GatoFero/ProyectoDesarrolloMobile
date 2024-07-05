@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nivelesMemory"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LevelMemoryActivity">
+
+    <Button
+        android:id="@+id/nivel1"
+        android:layout_width="277dp"
+        android:layout_height="57dp"
+        android:backgroundTint="#2dc2e3"
+        android:onClick="difficultyMemory"
+        android:text="Nivel 1"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.255" />
+
+    <Button
+        android:id="@+id/nivel2"
+        android:layout_width="277dp"
+        android:layout_height="57dp"
+        android:backgroundTint="#2dc2e3"
+        android:onClick="difficultyMemory"
+        android:text="Nivel 2"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.366" />
+
+    <Button
+        android:id="@+id/nivel4"
+        android:layout_width="277dp"
+        android:layout_height="57dp"
+        android:backgroundTint="#2dc2e3"
+        android:onClick="difficultyMemory"
+        android:text="Nivel 4"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.591" />
+
+    <Button
+        android:id="@+id/nivel3"
+        android:layout_width="277dp"
+        android:layout_height="57dp"
+        android:backgroundTint="#2dc2e3"
+        android:onClick="difficultyMemory"
+        android:text="Nivel 3"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.48" />
+
+    <Button
+        android:id="@+id/nivel5"
+        android:layout_width="277dp"
+        android:layout_height="57dp"
+        android:backgroundTint="#2dc2e3"
+        android:onClick="difficultyMemory"
+        android:text="Nivel 5"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.706" />
+
+    <Button
+        android:id="@+id/nivel6"
+        android:layout_width="277dp"
+        android:layout_height="57dp"
+        android:backgroundTint="#2dc2e3"
+        android:onClick="difficultyMemory"
+        android:text="Nivel 6"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.814" />
+
+    <ImageButton
+        android:id="@+id/imbBackthree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.024"
+        app:srcCompat="@drawable/volver" />
+</androidx.constraintlayout.widget.ConstraintLayout>
